@@ -1,0 +1,58 @@
+SELECT 
+  sender_id,
+  COUNT(message_id) AS count_messages
+FROM messages
+WHERE EXTRACT(MONTH FROM sent_date) = '8'
+  AND EXTRACT(YEAR FROM sent_date) = '2022'
+GROUP BY sender_id;
+
+
+SELECT 
+  user_id, 
+  COUNT(tweet_id) AS tweet_count_per_user 
+FROM tweets 
+WHERE tweet_date BETWEEN '2022-01-01' 
+  AND '2022-12-31'
+GROUP BY user_id;
+
+SELECT part, assembly_step
+FROM parts_assembly
+WHERE finish_date IS NULL;
+
+SELECT 
+  COUNT(*) FILTER (WHERE device_type = 'laptop') AS laptop_views,
+  COUNT(*) FILTER (WHERE device_type IN ('tablet', 'phone'))  AS mobile_views 
+FROM viewership;
+
+SELECT 
+  company_id, 
+  title, 
+  description, 
+  COUNT(job_id) AS job_count
+FROM job_listings
+GROUP BY company_id, title, description;
+
+SELECT users.city, trades.order_id
+FROM trades
+INNER JOIN users
+ON trades.user_id = users.user_id;
+
+SELECT 
+  EXTRACT(MONTH FROM submit_date) AS mth,
+  product_id,
+  ROUND(AVG(stars), 2) AS avg_stars
+FROM reviews
+GROUP BY 
+  EXTRACT(MONTH FROM submit_date), 
+  product_id
+ORDER BY mth, product_id;
+
+SELECT
+  drug,
+  total_sales - cogs AS total_profit
+FROM pharmacy_sales
+ORDER BY total_profit DESC
+LIMIT 3;
+
+
+

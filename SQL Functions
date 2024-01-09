@@ -1,0 +1,61 @@
+-- 1_Funciones de Cadena:
+
+-- LEN: Devuelve la longitud de una cadena.
+
+SELECT LEN('Hola Mundo') AS Longitud; -- Resultado: 11
+
+-- LEFT / RIGHT: Devuelve una parte de la cadena desde el principio o el final.
+
+SELECT LEFT('Hola Mundo', 4) AS Izquierda; -- Resultado: 'Hola'
+SELECT RIGHT('Hola Mundo', 5) AS Derecha; -- Resultado: 'Mundo'
+
+
+-- CONCAT: Concatena cadenas.
+
+SELECT CONCAT('Hola', ' ', 'Mundo') AS Concatenado; -- Resultado: 'Hola Mundo'
+
+
+-- 2_Funciones Numéricas:
+
+
+-- SUM: Calcula la suma de valores.
+
+SELECT SUM(ColumnaNumerica) AS SumaTotal FROM MiTabla;
+
+
+-- AVG: Calcula el promedio de valores.
+
+SELECT AVG(ColumnaNumerica) AS Promedio FROM MiTabla;
+
+-- 3_Funciones de Fecha y Hora:
+
+-- GETDATE: Devuelve la fecha y hora actuales
+
+SELECT GETDATE() AS FechaHoraActual;
+
+
+-- DATEDIFF: Calcula la diferencia entre dos fechas.
+
+SELECT DATEDIFF(DAY, FechaInicio, FechaFin) AS DiasDiferencia FROM Eventos;
+
+
+-- FORMAT: Formatea una fecha.
+
+SELECT FORMAT(GETDATE(), 'dd/MM/yyyy') AS FechaFormateada;
+
+
+-- 4_ Funciones de Conversión:
+
+-- CONVERT: Convierte un tipo de dato a otro.
+
+SELECT CONVERT(VARCHAR, Fecha, 103) AS FechaConvertida FROM MiTabla;
+
+
+-- CAST: Realiza una conversión explícita.
+
+SELECT CAST(ColumnaDecimal AS INT) AS ValorEntero FROM MiTabla;
+
+
+-- Extraer el año de la fecha
+SELECT DATEPART(YEAR, FechaEjemplo) AS AnioExtraido
+FROM EjemploFecha;

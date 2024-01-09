@@ -1,0 +1,69 @@
+-- SELECT - Recuperar Datos:
+
+SELECT columna1, columna2 FROM MiTabla WHERE condicion;
+
+-- INSERT - Insertar Datos:
+
+INSERT INTO MiTabla (columna1, columna2) VALUES (valor1, valor2);
+
+
+-- UPDATE - Actualizar Datos:
+
+UPDATE MiTabla SET columna1 = nuevo_valor WHERE condicion;
+
+
+-- DELETE - Eliminar Datos:
+
+DELETE FROM MiTabla WHERE condicion;
+
+
+-- MERGE - Combinar (SQL Server):
+
+MERGE INTO MiTabla AS target
+USING OtraTabla AS source
+ON target.id = source.id
+WHEN MATCHED THEN
+    UPDATE SET columna1 = source.valor1
+WHEN NOT MATCHED THEN
+    INSERT (columna1, columna2) VALUES (source.valor1, source.valor2);
+
+-- INNER JOIN Básico:
+
+SELECT *
+FROM Tabla1
+INNER JOIN Tabla2 ON Tabla1.id = Tabla2.id;
+
+
+-- LEFT JOIN:
+
+SELECT *
+FROM Tabla1
+LEFT JOIN Tabla2 ON Tabla1.id = Tabla2.id;
+
+
+-- RIGHT JOIN:
+
+SELECT *
+FROM Tabla1
+RIGHT JOIN Tabla2 ON Tabla1.id = Tabla2.id;
+
+
+-- GROUP BY
+
+SELECT 
+    Producto,
+    SUM(Cantidad) AS CantidadTotal
+FROM Ventas
+GROUP BY Producto
+HAVING SUM(Cantidad) > 20;
+
+
+-- Orden ascendente (por defecto si no se especifica)
+SELECT Columna1, Columna2
+FROM MiTabla
+ORDER BY Columna1 ASC;
+
+-- Orden descendente
+SELECT Columna1, Columna2
+FROM MiTabla
+ORDER BY Columna1 DESC;

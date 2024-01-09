@@ -1,0 +1,56 @@
+-- 1_Operadores de Comparación:
+
+=: Igual a
+<> o !=: Diferente de
+<: Menor que
+<=: Menor o igual que
+>: Mayor que
+>=: Mayor o igual que
+
+-- 2_ Operadores Lógicos:
+
+AND: Evalúa a verdadero si ambas condiciones son verdaderas.
+OR: Evalúa a verdadero si al menos una de las condiciones es verdadera.
+NOT: Invierte la condición, convierte verdadero en falso y viceversa.
+Ejemplo:
+
+SELECT * FROM MiTabla WHERE Columna1 > 10 AND Columna2 = 'Valor';
+
+
+-- 3_ Operador BETWEEN:
+
+Verifica si un valor está dentro de un rango especificado.
+SELECT * FROM MiTabla WHERE Columna1 BETWEEN 10 AND 20;
+
+
+-- 4_Operador IN:
+
+Verifica si un valor está dentro de un conjunto de valores especificado.
+SELECT * FROM MiTabla WHERE Columna1 IN (10, 20, 30);
+
+
+-- 5_Operador LIKE:
+
+Realiza una comparación de patrones en una cadena.
+SELECT * FROM MiTabla WHERE Columna1 LIKE 'Inicio%';
+
+-- 6_ Operador IS NULL / IS NOT NULL:
+
+Verifica si un valor es nulo o no nulo.
+SELECT * FROM MiTabla WHERE Columna1 IS NOT NULL;
+
+
+-- 7_Función CASE:
+
+Proporciona una lógica condicional similar a un switch en otros lenguajes de programación.
+
+SELECT
+    Columna1,
+    CASE
+        WHEN Columna1 > 10 THEN 'Mayor'
+        WHEN Columna1 < 10 THEN 'Menor'
+        ELSE 'Igual'
+    END AS Resultado
+FROM MiTabla;
+
+

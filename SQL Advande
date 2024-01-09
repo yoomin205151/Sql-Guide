@@ -1,0 +1,108 @@
+-- Stored Procedure
+
+-- Crear un procedimiento almacenado
+CREATE PROCEDURE NombreDelProcedimiento
+    @Parametro1 TipoDeDato,
+    @Parametro2 TipoDeDato
+AS
+BEGIN
+    -- Cuerpo del procedimiento
+    -- Puedes incluir instrucciones SQL aquí
+
+    -- Ejemplo de instrucción SELECT
+    SELECT Columna1, Columna2
+    FROM MiTabla
+    WHERE Condicion = @Parametro1;
+
+    -- Ejemplo de instrucción INSERT
+    INSERT INTO OtraTabla (Columna1, Columna2)
+    VALUES (@Parametro1, @Parametro2);
+
+    -- Puedes incluir más instrucciones según sea necesario
+
+END;
+
+-- Para ejecutar un procedimiento almacenado, puedes utilizar la siguiente sintaxis:
+
+EXEC NombreDelProcedimiento @Parametro1 = Valor1, @Parametro2 = Valor2;
+
+
+-- Function
+
+-- Crear una función
+CREATE FUNCTION NombreDeLaFuncion
+(
+    @Parametro1 TipoDeDato,
+    @Parametro2 TipoDeDato
+)
+RETURNS TipoDeDato
+AS
+BEGIN
+    -- Cuerpo de la función
+    -- Puedes incluir instrucciones SQL aquí
+
+    -- Ejemplo de instrucción SELECT
+    DECLARE @Resultado TipoDeDato;
+    SELECT @Resultado = Columna1
+    FROM MiTabla
+    WHERE Condicion = @Parametro1;
+
+    -- Puedes realizar más operaciones según sea necesario
+
+    RETURN @Resultado;
+END;
+
+-- Para llamar a la función y utilizar su resultado, puedes hacerlo en una consulta SQL, por ejemplo:
+
+DECLARE @ResultadoFinal TipoDeDato;
+SET @ResultadoFinal = dbo.NombreDeLaFuncion(@Parametro1, @Parametro2);
+-- Puedes utilizar @ResultadoFinal según sea necesario en tu código
+
+
+
+-- Trigger
+
+-- Crear un trigger
+CREATE TRIGGER NombreDelTrigger
+ON MiTabla
+AFTER INSERT, UPDATE, DELETE -- Puedes especificar los eventos que desencadenan el trigger
+AS
+BEGIN
+    -- Cuerpo del trigger
+    -- Puedes incluir instrucciones SQL aquí
+
+    -- Ejemplo de instrucción INSERT dentro del trigger
+    INSERT INTO OtraTabla (Columna1, Columna2)
+    SELECT Columna1, Columna2 FROM INSERTED;
+
+    -- Ejemplo de instrucción UPDATE dentro del trigger
+    UPDATE OtraTabla
+    SET Columna1 = 'NuevoValor'
+    FROM OtraTabla
+    INNER JOIN INSERTED ON OtraTabla.ID = INSERTED.ID;
+
+    -- Ejemplo de instrucción DELETE dentro del trigger
+    DELETE FROM OtraTabla
+    WHERE ID IN (SELECT ID FROM DELETED);
+
+    -- Puedes realizar más operaciones según sea necesario
+
+END;
+
+
+-- View
+
+-- Crear una vista
+CREATE VIEW VistaProductosVentas
+AS
+SELECT
+    P.ProductoID,
+    P.Nombre AS NombreProducto,
+    P.Precio,
+    V.VentaID,
+    V.Cantidad,
+    V.FechaVenta
+FROM
+    Productos P
+JOIN
+    Ventas V ON P.ProductoID = V.ProductoID;
